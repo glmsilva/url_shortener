@@ -9,11 +9,23 @@ TODO: Write installation instructions here
 ## Usage
 ### Request
 
-`POST /shortenit/`
+`PUT api/v1/shorten/`
+- Create a shorten url for a given long url, with following parameters:
+
+```json
+{
+  "long_url": "https://www.mybigurlexample.com/abigurlpath",
+  "metadata": {
+    "expires_at": "2024-04-28",
+    "tags": ["environment", "health"],
+  }
+}
 ```
-   curl -X POST 0.0.0.0:3000/ \
+- Example:
+```
+   curl -X PUT 0.0.0.0:3000/ \
     -H "Content-Type: application/json" \
-    -d '{"url": "https://www.mybigurlexample.com"}'
+    -d '{"long_url": "https://www.mybigurlexample.com/abigurlpath", "metadata": {"expires_at": "2024-04-28", "tags": ["environment", "health"]}}'
 ```
 ### Response
 
@@ -21,7 +33,9 @@ TODO: Write installation instructions here
 {
   "long_url": "https://www.mybigurlexample.com",
   "short_url": "http://localhost/d097b",
-  "key": "d097b"
+  "key": "d097b",
+  "created_at": "2024-04-27",
+  "active": true
 }
 ```
 
